@@ -1,0 +1,238 @@
+/* ─── Annotation Toolbar ───────────────────────────────────────────────── */
+
+.annotation-toolbar {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid #484f58;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  animation: annotateIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes annotateIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.annotation-toolbar__btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #e6edf3;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.annotation-toolbar__btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.annotation-toolbar__btn--highlight:hover {
+  background: rgba(255, 243, 191, 0.15);
+  color: #fff3bf;
+}
+
+.annotation-toolbar__btn--note:hover {
+  background: rgba(165, 216, 255, 0.15);
+  color: #a5d8ff;
+}
+
+.annotation-toolbar__btn-icon {
+  font-size: 1rem;
+}
+
+/* ─── Highlight Color Picker ───────────────────────────────────────────── */
+
+.annotation-toolbar__picker {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid #484f58;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  animation: annotateIn 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.annotation-toolbar__color {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.annotation-toolbar__color:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Canvas Background Picker ─────────────────────────────────────────── */
+
+.canvas-bg-picker {
+  position: fixed;
+  bottom: 12px;
+  right: 60px;
+  z-index: 10;
+}
+
+.canvas-bg-picker__trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  background: rgba(30, 30, 30, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid #484f58;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8b949e;
+}
+
+.canvas-bg-picker__trigger:hover {
+  background: rgba(30, 30, 30, 0.95);
+  border-color: #6e7681;
+  color: #e6edf3;
+}
+
+.canvas-bg-picker__swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+}
+
+.canvas-bg-picker__label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.canvas-bg-picker__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.canvas-bg-picker__dropdown {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: rgba(22, 27, 34, 0.98);
+  backdrop-filter: blur(12px);
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 220px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  animation: bgPickerIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bgPickerIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.canvas-bg-picker__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.canvas-bg-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.canvas-bg-picker__color {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.canvas-bg-picker__color:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.canvas-bg-picker__color--active {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+}
+
+.canvas-bg-picker__custom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #30363d;
+}
+
+.canvas-bg-picker__custom-label {
+  font-size: 0.75rem;
+  color: #8b949e;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.canvas-bg-picker__custom-input {
+  width: 32px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+}
+
+.canvas-bg-picker__custom-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.canvas-bg-picker__custom-input::-webkit-color-swatch {
+  border: 1px solid #484f58;
+  border-radius: 4px;
+}

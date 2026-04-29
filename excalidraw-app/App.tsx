@@ -146,6 +146,7 @@ import { Dashboard } from "./components/Dashboard";
 import { saveNotebookContent, loadNotebookContent } from "./data/notebookContent";
 import { flushGitHubSave } from "./data/githubSync";
 import { notebookStoreAPI } from "./data/notebookStore";
+import { AnnotationToolbar, CanvasBackgroundPicker } from "./components/AnnotationToolbar";
 
 import "./index.scss";
 
@@ -980,6 +981,7 @@ const ExcalidrawWrapper = ({
         UIOptions={{
           canvasActions: {
             toggleTheme: true,
+            changeViewBackgroundColor: true,
             export: {
               onExportToBackend,
               renderCustomUI: excalidrawAPI
@@ -1325,6 +1327,10 @@ const ExcalidrawWrapper = ({
           />
         )}
       </Excalidraw>
+      {/* Annotation Toolbar — appears when text is selected */}
+      {notebookId && <AnnotationToolbar excalidrawAPI={excalidrawAPI} />}
+      {/* Canvas Background Picker — always visible */}
+      <CanvasBackgroundPicker excalidrawAPI={excalidrawAPI} />
     </div>
   );
 };
