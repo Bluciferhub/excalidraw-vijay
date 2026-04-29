@@ -9,9 +9,9 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import {
   convertToExcalidrawElements,
-  newElementWith,
   CaptureUpdateAction,
-} from "@excalidraw/excalidraw/index";
+} from "@excalidraw/excalidraw";
+import { newElementWith } from "@excalidraw/element";
 import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types";
 import type { ExcalidrawElement } from "@excalidraw/element/types";
 

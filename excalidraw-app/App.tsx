@@ -603,6 +603,10 @@ const ExcalidrawWrapper = ({
       if (isTestEnv()) {
         return;
       }
+      // Disable global localStorage sync when using notebooks to prevent data bleed
+      if (notebookId) {
+        return;
+      }
       if (
         !document.hidden &&
         ((collabAPI && !collabAPI.isCollaborating()) || isCollabDisabled)
